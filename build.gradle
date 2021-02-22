@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'idea'
+}
+
+defaultTasks 'clean', 'build'
+
+apply plugin: 'java-library'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+}
+
+test {
+    useJUnitPlatform {
+    }
+
+    testLogging {
+        exceptionFormat = 'full'
+        events = ["FAILED", "STANDARD_OUT", "STANDARD_ERROR"]
+    }
+}
+
+wrapper {
+    gradleVersion = '6.8.2'
+}
